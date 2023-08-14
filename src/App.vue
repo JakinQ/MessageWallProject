@@ -1,4 +1,5 @@
 <template>
+  <div class="ab">22222222</div>
   <router-view></router-view>
 </template>
 
@@ -7,7 +8,12 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import HelloWorld from "./components/HelloWorld.vue";
 </script>
-<style scoped>
+<style scoped lang="less">
+.ab {
+  font-size: @size-16;
+  color: @primary-color;
+  background-color: @gray-2;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

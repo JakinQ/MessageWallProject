@@ -9,6 +9,8 @@ import router from './router'
 import api from './api/index'
 import axios from 'axios'
 import vueAxios from 'vue-axios'
+import './styles/commons.less';
+
 const app = createApp(App)
 
 app.use(createPinia())

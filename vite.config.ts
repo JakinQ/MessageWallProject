@@ -4,7 +4,22 @@ import Pages from 'vite-plugin-pages';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [Pages(), vue()]
+  plugins: [Pages(), vue()],
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
+  },
+  css: {
+    // css预处理器
+    preprocessorOptions: {
+      less: {
+        charset: false,
+        additionalData: '@import "@/styles/commons.less";',
+        math: "always",
+      },
+    },
+  }
 })
 
 

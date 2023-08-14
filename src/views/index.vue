@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="count">Count: {{ count2 }}</p>
-    <p>c2{{ count }}</p>
+    <p class="ab">c2{{ count }}</p>
     <p class="aa">1111</p>
     <button @click="increment2">Increment</button>
 
@@ -29,10 +29,17 @@ const increment = counter.increment;
 </script>
 
 <style scoped lang="less">
+// @import url(@/styles/commons);
+
 .count {
   color: red;
 }
 .aa {
   color: blue;
+}
+.ab {
+  font-size: @size-16;
+  color: @primary-color;
+  background-color: @gray-2;
 }
 </style>
