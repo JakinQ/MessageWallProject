@@ -8,8 +8,13 @@ const routes: Array<RouteRecordRaw> = [
         path: '/',
         name: 'index',
         component: () => import('../views/index.vue'),
-        // redirect: '/',
-        children: []
+        redirect: '/wall',
+        children: [
+            {
+                path: 'wall',
+                component: () => import('../views/WallMessage.vue'),
+            }
+        ]
     }
 ]
 // routes.push({
