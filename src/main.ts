@@ -14,7 +14,7 @@ import './styles/commons.less';
 import "@/assets/fonts/icon/iconfont.js"
 import "@/assets/pigtruman手写体.ttf"
 import Particles from "particles.vue3";
-
+import './mock/index.ts'
 const app = createApp(App)
 
 app.use(createPinia())

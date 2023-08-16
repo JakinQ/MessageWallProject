@@ -1,48 +1,96 @@
 <template>
   <div
     class="node-card"
-    :style="{ width: width, background: 'rgba(252, 175, 162, 0.3)' }"
+    :style="{
+      width: width,
+      background: cardColorBlock[cardData.backgroundColor],
+    }"
   >
     <header class="top">
-      <p class="time">1</p>
-      <p class="label">2</p>
+      <p>{{ cardData.backgroundColor }}</p>
+      <p class="time">{{ getTime2(Date.parse(cardData.moment)) }}</p>
+      <p class="label">{{ label[cardData.type][cardData.label] }}</p>
     </header>
-    <main class="message">
-      底部导航（与顶部导航呼应，以及网站地图、帮助中心、关于我们等）
-      版权说明（除了copyright by即©️，还有powered by 、design by等）
-      联系方式（名称、地址、电话、邮件、微博、微信等）
-    </main>
+    <main class="message">{{ props.note.content }}</main>
     <footer class="footer">
       <div class="left">
         <div class="iconfont">
           <svg class="icon aixin" aria-hidden="true">
             <use xlink:href="#icon-aixin1"></use></svg
-          ><span class="value">1</span>
+          ><span class="value">{{ cardData.like }}</span>
         </div>
         <div class="iconfont">
           <svg class="icon" aria-hidden="true">
             <use xlink:href=" #icon-liuyan"></use></svg
-          ><span class="value">12</span>
+          ><span class="value">{{ cardData.comment }}</span>
         </div>
       </div>
-      <div class="name">盚鮛</div>
+      <div class="name">{{ cardData.name }}</div>
     </footer>
   </div>
 </template>
 <script setup lang='ts'>
-import { ref, reactive, defineProps } from "vue";
+import { ref, reactive, defineProps, onMounted, Ref, computed } from "vue";
+import axios from "axios";
+import { wallType, label, cardColor, cardColorBlock } from "../api/webData";
+
+const mockData = ref([]);
 const props = defineProps({
   width: {
     type: String,
-    default: "288px",
+    default: "100%",
   },
   size: String,
   type: String,
+  note: {
+    type: Object,
+    default: [
+      {
+        id: 1,
+        userId: 1,
+        name: "杜静",
+        content: "千局体化石研米权水越带准生况。着志党信运原好学名全六而。",
+        moment: "1976-05-08 06:05:21",
+        label: 9,
+        like: 59,
+        comment: 26,
+        backgroundColor: 1,
+        isRepeal: 14,
+        isReport: 19,
+        type: 0,
+      },
+    ],
+  },
   //   count: {
   //     type: Number,
   //     default: 0,
   //   },
 });
+interface Note {
+  id: number;
+  userId: number;
+  name: string;
+  content: string;
+  moment: string;
+  label: number;
+  like: number;
+  comment: number;
+  backgroundColor: number;
+  isRepeal: number;
+  isReport: number;
+  type: number;
+}
+const getTime2 = (time: string) => {
+  const date = new Date(time);
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}.${month}.${day}`;
+};
+const cardData: Note = props.note as Note;
+onMounted(async () => {});
 </script>
 
 <style lang="less" scoped>
@@ -119,7 +167,6 @@ const props = defineProps({
     }
     .name {
       font-family: "pigtruman", sans-serif;
-      font-weight: 600;
       font-size: 15px;
       color: @gray-1;
     }

@@ -1,10 +1,15 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages';
+import { viteMockServe } from "vite-plugin-mock";
+// declare module 'vite-plugin-mock';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [Pages(), vue()],
+export default defineConfig(({ command, mode }) => ({
+  plugins: [Pages(), vue(), viteMockServe({
+    mockPath: "./mock",  // mock文件存放的位置
+    localEnabled: command === "serve" && mode === "mock", //在开发环境中启用 mock
+  }),],
   resolve: {
     alias: {
       '@': '/src'
@@ -20,7 +25,7 @@ export default defineConfig({
       },
     },
   }
-})
+}))
 
 
 // import { UserConfig, ConfigEnv, loadEnv } from 'vite';
