@@ -25,10 +25,16 @@ const bType = ref("primary");
   //除去button公共 样式
   // background: none;
   // outline: none;
-  // cursor: pointer;
+  cursor: pointer;
   border: none;
 }
 //size
+.mMax {
+  min-width: 200px;
+  height: 48px;
+  border-radius: 32px;
+  padding: 0 24px;
+}
 .max {
   min-width: 100px;
   height: 48px;
@@ -58,7 +64,7 @@ const bType = ref("primary");
   color: @gray-1;
 }
 .normal {
-  background: @gray-10;
+  background: none;
   color: @gray-1;
   border: 1px solid @gray-1;
 }

@@ -17,6 +17,7 @@
     "vite-plugin-mock": "^2.3.0",
     "vue": "^3.2.41",
     "vue-axios": "^3.5.2",
+    "vue-masonry": "^0.16.0",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {

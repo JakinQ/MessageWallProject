@@ -4,22 +4,40 @@
       <img src="../assets/images/favicon.svg" />
       <p class="logoTitle">千鹤时光</p>
     </div>
+
     <div class="menu">
       <QhButton
         name="留言墙"
         size="base"
-        type="primaryActive"
+        :type="counter.wallID === 0 ? 'primaryActive' : 'nPrimary'"
         class="qb"
+        @click="changeWall(0)"
       ></QhButton>
-      <QhButton name="照片墙" size="base" type="nPrimary" class="qb"></QhButton>
+      <QhButton
+        name="照片墙"
+        size="base"
+        :type="counter.wallID === 0 ? 'nPrimary' : 'primaryActive'"
+        class="qb"
+        @click="changeWall(1)"
+      ></QhButton>
     </div>
+
     <div class="user"><div class="user-head"></div></div>
   </div>
 </template>
 <script setup lang='ts'>
 import { ref, reactive } from "vue";
 import QhButton from "./QhButton.vue";
+import useStore from "../store/index";
+const { counter, user } = useStore();
 
+//获取路由的参数
+import { useRoute } from "vue-router";
+const route = useRoute();
+
+const changeWall = (id: number) => {
+  counter.changeWallID(id);
+};
 const components = {
   QhButton,
 };

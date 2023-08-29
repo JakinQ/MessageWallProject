@@ -7,11 +7,12 @@
     }"
   >
     <header class="top">
-      <p>{{ cardData.backgroundColor }}</p>
       <p class="time">{{ getTime2(Date.parse(cardData.moment)) }}</p>
       <p class="label">{{ label[cardData.type][cardData.label] }}</p>
     </header>
-    <main class="message">{{ props.note.content }}</main>
+    <main class="message" @click="selectCard">
+      {{ props.note.content }}
+    </main>
     <footer class="footer">
       <div class="left">
         <div class="iconfont">
@@ -61,6 +62,7 @@ const props = defineProps({
       },
     ],
   },
+  cardIndex: Number,
   //   count: {
   //     type: Number,
   //     default: 0,
@@ -90,6 +92,12 @@ const getTime2 = (time: string) => {
   return `${year}.${month}.${day}`;
 };
 const cardData: Note = props.note as Note;
+const emit = defineEmits();
+
+const selectCard = () => {
+  //选择卡片内容，触发打开卡片详情
+  emit("selectcard", props.cardIndex);
+};
 onMounted(async () => {});
 </script>
 
